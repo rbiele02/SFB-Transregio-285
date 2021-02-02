@@ -2,13 +2,13 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-import plotly.express as px
-import plotly.graph_objects as go
-import pylab as plt
-import matplotlib as mpl
-import seaborn as sns
-mpl.rcParams['font.size'] = 14
-mpl.rcParams['figure.dpi'] = 90.
+# import plotly.express as px
+# import plotly.graph_objects as go
+# import pylab as plt
+# import matplotlib as mpl
+# import seaborn as sns
+# mpl.rcParams['font.size'] = 14
+# mpl.rcParams['figure.dpi'] = 90.
 
 import base64
 # import io
