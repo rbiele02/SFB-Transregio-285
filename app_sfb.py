@@ -28,6 +28,8 @@ def get_table_download_link_csv(df):
 @st.cache
 def load_data():
     authors = pd.read_csv('data/authors.csv', index_col=0)
+    authors['h_index'] = authors['h_index'].fillna(0)
+    authors['h_index'] = authors['h_index'].astype('Int64')
     papers = pd.read_csv('data/papers_sfb_2019.csv', index_col=0)
     papers = papers.reset_index(drop=True)
     return authors, papers
@@ -41,9 +43,9 @@ st.subheader('Involved Scientists')
 # option = st.sidebar.radio('Go to', ('Scientists','Publications'))
     
 # if option ==  'People':
-cols1 = st.multiselect('', options=['affil_short','degree','name','h_index','documents','citations','pub_period'],
-default = ['name','degree','affil_short'])
-st.write(authors[cols1])
+cols1 = st.multiselect('', options=['affil_short','degree','name','h_index','documents','citations','pub_period','areas','gender'],
+default = ['name','degree','affil_short','areas'])
+st.write(authors[cols1].astype('object'))
     # st.write(df[cols1].style.highlight_null(null_color='yellow'))
 
 st.markdown("---")
