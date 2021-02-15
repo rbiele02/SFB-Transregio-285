@@ -36,6 +36,7 @@ def load_data():
     return authors, papers
 
 def main():
+    st.balloons()
     authors, papers = load_data()
     st.title(f"Overview SFB/Transregio 285")
     st.markdown("---")
