@@ -62,15 +62,15 @@ def main():
 
 session_state = get(password='password')
 if session_state.password != '2007':
-    pwd_placeholder = st.sidebar.empty()
     user_placeholder = st.sidebar.empty()
-    pwd = pwd_placeholder.text_input("Password:", value="", type="password")
+    pwd_placeholder = st.sidebar.empty()
     user = user_placeholder.text_input('username')
+    pwd = pwd_placeholder.text_input("Password:", value="", type="password")
     # user = st.sidebar.text_input('username')
     session_state.password = pwd
     if session_state.password == '2007' and user=='cuni':
-        pwd_placeholder.empty()
         user_placeholder.empty()
+        pwd_placeholder.empty()
         main()
     elif session_state.password != '':
         st.error("the password you entered is incorrect")
