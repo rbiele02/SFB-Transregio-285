@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+from SessionState import get
 
 # import plotly.express as px
 # import plotly.graph_objects as go
@@ -33,29 +34,47 @@ def load_data():
     papers = pd.read_csv('data/papers_sfb_2019.csv', index_col=0)
     papers = papers.reset_index(drop=True)
     return authors, papers
-    
-authors, papers = load_data()
 
-st.title(f"Overview SFB/Transregio 285")
-st.markdown("---")
-st.subheader('Involved Scientists')
-# st.sidebar.subheader("Navigation")
-# option = st.sidebar.radio('Go to', ('Scientists','Publications'))
+def main():
+    authors, papers = load_data()
+    st.title(f"Overview SFB/Transregio 285")
+    st.markdown("---")
+    st.subheader('Involved Scientists')
+    # st.sidebar.subheader("Navigation")
+    # option = st.sidebar.radio('Go to', ('Scientists','Publications'))
     
-# if option ==  'People':
-cols1 = st.multiselect('', options=['affil_short','degree','name','h_index','documents','citations','pub_period','areas','gender'],
-default = ['name','degree','affil_short','areas'])
-st.write(authors[cols1].astype('object'))
-    # st.write(df[cols1].style.highlight_null(null_color='yellow'))
+    # if option ==  'People':
+    cols1 = st.multiselect('', options=['affil_short','degree','name','h_index','documents','citations','pub_period','areas','gender'],
+    default = ['name','degree','affil_short','areas'])
+    st.write(authors[cols1].astype('object'))
+        # st.write(df[cols1].style.highlight_null(null_color='yellow'))
 
-st.markdown("---")
-st.subheader('Publication in 2019 from all scientists involved')   
-# if option == 'Publications':
-cols1 = st.multiselect('',  options = ['doi','title','subtype','subtypeDescription','fund_acr',
-                                        'author_names','publicationName', 'aggregationType','citedby_count',
-                                        'openaccess','coverDate'],
-default = ['title','aggregationType','citedby_count','doi','coverDate','author_names','fund_acr'])
-st.write(papers[cols1])
-st.markdown(get_table_download_link_csv(papers[cols1]), unsafe_allow_html=True)
+    st.markdown("---")
+    st.subheader('Publication in 2019 from all scientists involved')   
+    # if option == 'Publications':
+    cols1 = st.multiselect('',  options = ['doi','title','subtype','subtypeDescription','fund_acr',
+                                            'author_names','publicationName', 'aggregationType','citedby_count',
+                                            'openaccess','coverDate'],
+    default = ['title','aggregationType','citedby_count','doi','coverDate','author_names','fund_acr'])
+    st.write(papers[cols1])
+    st.markdown(get_table_download_link_csv(papers[cols1]), unsafe_allow_html=True)
+
+
+session_state = get(password='password')
+if session_state.password != '2007':
+    pwd_placeholder = st.sidebar.empty()
+    user_placeholder = st.sidebar.empty()
+    pwd = pwd_placeholder.text_input("Password:", value="", type="password")
+    user = user_placeholder.text_input('username')
+    # user = st.sidebar.text_input('username')
+    session_state.password = pwd
+    if session_state.password == '2007' and user=='cuni':
+        pwd_placeholder.empty()
+        user_placeholder.empty()
+        main()
+    elif session_state.password != '':
+        st.error("the password you entered is incorrect")
+else:
+    main()
     
     
