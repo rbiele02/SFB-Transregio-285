@@ -62,14 +62,14 @@ def main():
 
 
 session_state = get(password='password')
-if session_state.password != '2007':
+if session_state.password != 'Meschut':
     user_placeholder = st.sidebar.empty()
     pwd_placeholder = st.sidebar.empty()
     user = user_placeholder.text_input('username')
     pwd = pwd_placeholder.text_input("Password:", value="", type="password")
     # user = st.sidebar.text_input('username')
     session_state.password = pwd
-    if session_state.password == '2007' and user=='cuni':
+    if session_state.password == 'Meschut' and user=='SFBTRR285':
         user_placeholder.empty()
         pwd_placeholder.empty()
         main()
