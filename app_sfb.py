@@ -68,7 +68,7 @@ if session_state.password != 'Meschut':
     pwd = pwd_placeholder.text_input("Password:", value="", type="password")
     # user = st.sidebar.text_input('username')
     session_state.password = pwd
-    if session_state.password == 'Meschut' and user=='SFBTRR285':
+    if session_state.password == 'SFBTRR285' and user=='Meschut':
         user_placeholder.empty()
         pwd_placeholder.empty()
         st.balloons()
