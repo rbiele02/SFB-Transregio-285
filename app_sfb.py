@@ -60,17 +60,35 @@ def main():
     st.markdown(get_table_download_link_csv(papers[cols1]), unsafe_allow_html=True)
 
 
-session_state = get(password='password',user='user')
-if session_state.password != 'Meschut':
-    user_placeholder = st.sidebar.empty()
+# session_state = get(password='password')
+# if session_state.password != 'Meschut':
+#     user_placeholder = st.sidebar.empty()
+#     pwd_placeholder = st.sidebar.empty()
+#     user = user_placeholder.text_input('username')
+#     pwd = pwd_placeholder.text_input("Password:", value="", type="password")
+#     # user = st.sidebar.text_input('username')
+#     session_state.password = pwd
+#     session_state.user = user
+#     if session_state.password == 'SFBTRR285' and session_state.user=='Meschut':
+#         user_placeholder.empty()
+#         pwd_placeholder.empty()
+#         st.balloons()
+#         main()
+#     elif session_state.password != '':
+#         st.error("the password you entered is incorrect")
+# else:
+#     main()
+
+session_state = get(password='password')
+if session_state.password != 'SFBTRR285':
+    # user_placeholder = st.sidebar.empty()
     pwd_placeholder = st.sidebar.empty()
-    user = user_placeholder.text_input('username')
+    # user = user_placeholder.text_input('username')
     pwd = pwd_placeholder.text_input("Password:", value="", type="password")
     # user = st.sidebar.text_input('username')
     session_state.password = pwd
-    session_state.user = user
-    if session_state.password == 'SFBTRR285' and session_state.user=='Meschut':
-        user_placeholder.empty()
+    if session_state.password == 'SFBTRR285':
+        # user_placeholder.empty()
         pwd_placeholder.empty()
         st.balloons()
         main()
