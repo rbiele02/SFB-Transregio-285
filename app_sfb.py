@@ -90,7 +90,7 @@ if session_state.password != 'SFBTRR285':
     if session_state.password == 'SFBTRR285':
         # user_placeholder.empty()
         pwd_placeholder.empty()
-        st.balloons()
+#         st.balloons()
         main()
     elif session_state.password != '':
         st.error("the password you entered is incorrect")
